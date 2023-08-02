@@ -10,6 +10,8 @@ import mongoose from "mongoose";
 //create express app
 const app = express();
 
+
+
 //csrf cookie
 
 const csrfProtection = csrf({ cookie: true });
@@ -29,7 +31,11 @@ mongoose
 
 //middleware for express
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+  origin: ["https://learningmanagementsystemclient-hprwlm66p-ahadalichowdhury.vercel.app/", "learningmanagementsystemclient-git-main-ahadalichowdhury.vercel.app", "learningmanagementsystemclient-hprwlm66p-ahadalichowdhury.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+
+}));
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
